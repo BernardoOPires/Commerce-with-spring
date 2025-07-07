@@ -55,7 +55,7 @@ public class ProductService {
     }
 
      @Transactional
-    public ProductDTO Insert(ProductDTO dto){
+    public ProductDTO insert(ProductDTO dto){
         Product entity = new Product();
         copyDtoToEntity(dto, entity);
 
@@ -64,7 +64,7 @@ public class ProductService {
     }
 
      @Transactional
-    public ProductDTO Update(Long id, ProductDTO dto){
+    public ProductDTO update(Long id, ProductDTO dto){
         Product entity = repo.getReferenceById(id);
         copyDtoToEntity(dto, entity);
         entity = repo.save(entity);
@@ -76,5 +76,10 @@ public class ProductService {
         entity.setDescription(dto.getDescription());
         entity.setPrice(dto.getPrice());
         entity.setImgURL(dto.getImgUrl());
+    }
+
+     @Transactional
+    public void delete(Long id){
+        repo.deleteById(id);
     }
 }
